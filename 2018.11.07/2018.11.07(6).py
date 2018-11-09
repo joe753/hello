@@ -1,5 +1,5 @@
 def plus(a, b):
-    return (a + b)
+    return a + b
 
 def minus(a, b):
     return a - b
@@ -34,4 +34,4 @@ else :
     exit()
 
 
-print (result)
+print ("Answer is {:.0f}".format(result))
