@@ -31,26 +31,25 @@ class 성인():
             print ("Error!!!!!")
             exit()
         
-        self.price(time)
+        self.price()    
 
     def price (self, time):
         price = (time / 10) * 300
-        if self.name == "청소년":
-            price = price * 0.7
-        elif self.name == "어린이":
-            price = price * 0.5
-        else :
-            price = price
         print ("충전하실 시간은 <{}>분, 결제하실 금액은 <{:.0f}>원입니다.\n요금을 넣어주세요.".format(time,price))
         
 
 class 청소년(성인):
     name = "청소년"
-    
+    def price(self):
+        t = super().price()
+        return t * 0.75
    
         
 class 어린이(성인):
     name = "어린이"
+    def price(self):
+        t = super().price()
+        return t * 0.5
    
 
 
