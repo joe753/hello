@@ -41,14 +41,12 @@ class 성인:
 class 청소년(성인):
     name = "청소년"
     def price(self, time):
-        price = (time / 10) * 300 * 0.75
-        print ("충전하실 시간은 <{}>분, 결제하실 금액은 <{:.0f}>원입니다.\n요금을 넣어주세요.".format(time,price))
+        super().price() * 0.5
         
 class 어린이(성인):
     name = "어린이"
     def price(self, time):
-        price = (time / 10) * 300 * 0.5
-        print ("충전하실 시간은 <{}>분, 결제하실 금액은 <{:.0f}>원입니다.\n요금을 넣어주세요.".format(time,price))
+        super().price()
 
 
 all_people = [성인(), 청소년(), 어린이()]

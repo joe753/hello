@@ -1,4 +1,4 @@
 {
     "python.linting.pylintEnabled": false,
-    "editor.tabCompletion": "on"
+    "editor.detectIndentation": false
 }
