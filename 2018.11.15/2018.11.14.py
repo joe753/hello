@@ -19,10 +19,9 @@ has_msg = len(sa) >= 2
  
 if has_msg: 
     commit_msg = sa[1] 
-  
- 
 else: 
     input_msg = input("Default Message?? (Yes: Enter or input message) > ") 
+
 if input_msg != '': 
     commit_msg = input_msg 
   
