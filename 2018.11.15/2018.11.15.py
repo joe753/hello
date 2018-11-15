@@ -1,6 +1,5 @@
 import sys, os, datetime
-
-
+import random
 
 def gitcmd (cmd):
     os.system(cmd)
@@ -12,17 +11,14 @@ nowtime = now.strftime('%Y.%m.%d')
 no_inputmsg = "{}".format(nowtime)
 inputmsg = no_inputmsg
 hasmsg = len(am) >= 2
-\n
+
 if hasmsg:
     inputmsg = am[1]
 else :
-    result = input("\n\n =====> Write commit message.\n =====> (If You don't have anything to right, Press <<Enter>>)\n >>>>>>>>>")
+    result = input("\n\n [=====Write commit message.=====]\n ┌────┐  \n │♠8     │\n │        │\n │        │\n │        │\n │        │\n │        │\n └────┘ \nIf You don't have anything to write, Press <<Enter>>\n >>>>>>>>>")
     if result != '':
         inputmsg = result    
     
-
-
-
 
 
 gitcmd("git add --all")
