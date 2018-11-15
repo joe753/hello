@@ -26,5 +26,5 @@ if result != '':
 
 
 gitcmd("git add --all")
-gitcmd("git commit -am '{}'".format(inputmsg))
+gitcmd("git commit -am {}".format(inputmsg))
 gitcmd("git push")
