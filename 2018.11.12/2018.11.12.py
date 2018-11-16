@@ -2,3 +2,5 @@ msg = "사용하실 시간을 입력하시오. (usage: {}시간 {}분 (10분단�
 
 
 input(msg)
+print ("DDDDDDDDDDDDDDDDDDDDDDDDDDDD")
+
