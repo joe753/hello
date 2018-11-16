@@ -1,3 +1,5 @@
+import os
+print (os.getcwd())
 class Students:
     def __init__(self, name, gender, age, score):
         self.name = name

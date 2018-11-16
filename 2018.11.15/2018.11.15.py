@@ -1,6 +1,4 @@
-import sys, os,
-import random
-import datetime
+import sys, os, datetime
 
 def gitcmd (cmd):
     os.system(cmd)
@@ -16,7 +14,7 @@ hasmsg = len(am) >= 2
 if hasmsg:
     inputmsg = am[1]
 else :
-    result = input("\n\n [=====Write commit message.=====]\n ┌────┐  \n │♠8     │\n │        │\n │        │\n │        │\n │        │\n │        │\n └────┘ \nIf You don't have anything to write, Press <<Enter>>\n >>>>>>>>>")
+    result = input("\n\n [=====Write commit message.=====]\n ┌─────┐  \n │♠8       │\n │ ♠    ♠ │\n │    ♠    │\n │ ♠    ♠ │\n │    ♠    │\n │ ♠    ♠ │\n │       8♠│\n └─────┘ \nIf You don't have anything to write, Press <<Enter>>\n >>>>>>>>>")
     if result != '':
         inputmsg = result    
     
