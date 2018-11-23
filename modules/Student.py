@@ -15,9 +15,7 @@ class Student:
         return "{}**\t{}\t{}\t{}".format(self.name[0], self.gender, self.age, self.grade)
 
     def make_grade(self):
-        if self.score == 100:
-            self.grade = 'A+'
-        elif self.score < 50 :
+        if self.score < 50 :
             self.grade = 'F'
         else: 
             self.grade = g_grades[ self.score // 10 - 5 ]

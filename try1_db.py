@@ -26,3 +26,5 @@ with conn:
     cur.executemany(sql, data)
 
     conn.commit()
+
+print (results)
