@@ -46,20 +46,30 @@ class Student:
         return "{}**\t{}\t{}\t{}\t{}".format(self.name[0], self.gender, self.pri_age, self.grade, self.pri_address)
  
 
-student = Student()
+
+
+
 with open('students.csv', 'r', encoding='utf8') as file:
     for i, line in enumerate(file):
         if i == 0: 
             continue
         else:
             students.append(Student(line))
+student = (self.name[0]+"**", self.gender, self.pri_age, self.grade, self.pri_address)
+print (student)
+# for s in students:
+#     print (s)
 
-for s in students:
-    print (s)
+
+
 # conn = sqlite3.connect('exam.db')
 
+# with conn:
+#     cur = conn.cursor()
+#     sql = "insert into tt(id, name, ) values (?, ?)"
+#     cur.executemany(sql, data)
 
-
+#     conn.commit()
 
 
 

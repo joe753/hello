@@ -1,6 +1,11 @@
+import sqlite3
+g_grades = ['A', 'B', 'C', 'D', 'F']
+g_grades.reverse()
+students = [] 
 
 
 class Student:
+    
     def __init__(self, line):
         name, gender, age, score, address = line.strip().split(',')
         self.name = name
@@ -13,17 +18,13 @@ class Student:
         for i in self.age:
             self.pri_age = self.age[0] + '0대'    
 
-    def make_grades(self):    
-        if self.score >= 90:
+    def make_grade(self):
+        if self.score == 100:
             self.grade = 'A'
-        elif self.score >= 80:
-            self.grade = 'B'
-        elif self.score >= 70:
-            self.grade = 'C'
-        elif self.score >= 60:
-            self.grade = 'D'
-        else : 
+        elif self.score < 50 :
             self.grade = 'F'
+        else: 
+            self.grade = g_grades[self.score // 10 - 5]
 
     def pri_address(self):
         lst_address = list(self.address.split(' '))
@@ -38,21 +39,39 @@ class Student:
    
     def __str__(self):
         self.pri_age()
-        self.make_grades()
+        self.make_grade()
         self.to_english_gender()
-        self.pri_address()      
+        self.pri_address()
+
         return "{}**\t{}\t{}\t{}\t{}".format(self.name[0], self.gender, self.pri_age, self.grade, self.pri_address)
+ 
 
-    
 
-    
-       
 
-students = []   
 
 with open('students.csv', 'r', encoding='utf8') as file:
     for i, line in enumerate(file):
-        if i == 0: continue
-        students.append(Student(line))
+        if i == 0: 
+            continue
+        else:
+            students.append(Student(line))
+
+Student(line)
+student = (self.name[0]+"**", self.gender, self.pri_age, self.grade, self.pri_address)
+print (student)
+# for s in students:
+#     print (s)
+
+
+
+# conn = sqlite3.connect('exam.db')
+
+# with conn:
+#     cur = conn.cursor()
+#     sql = "insert into tt(id, name, ) values (?, ?)"
+#     cur.executemany(sql, data)
+
+#     conn.commit()
+
 
 
