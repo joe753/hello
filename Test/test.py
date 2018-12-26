@@ -62,14 +62,14 @@ print (student)
 
 
 
-# conn = sqlite3.connect('exam.db')
+conn = sqlite3.connect('exam.db')
 
-# with conn:
-#     cur = conn.cursor()
-#     sql = "insert into tt(id, name, ) values (?, ?)"
-#     cur.executemany(sql, data)
+with conn:
+    cur = conn.cursor()
+    sql = "insert into tt(id, name, ) values (?, ?)"
+    cur.executemany(sql, data)
 
-#     conn.commit()
+    conn.commit()
 
 
 

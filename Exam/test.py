@@ -59,19 +59,19 @@ with open('students.csv', 'r', encoding='utf8') as file:
 Student(line)
 student = (self.name[0]+"**", self.gender, self.pri_age, self.grade, self.pri_address)
 print (student)
-# for s in students:
-#     print (s)
+for s in students:
+    print (s)
 
 
 
-# conn = sqlite3.connect('exam.db')
+conn = sqlite3.connect('exam.db')
 
-# with conn:
-#     cur = conn.cursor()
-#     sql = "insert into tt(id, name, ) values (?, ?)"
-#     cur.executemany(sql, data)
+with conn:
+    cur = conn.cursor()
+    sql = "insert into tt(id, name, ) values (?, ?)"
+    cur.executemany(sql, data)
 
-#     conn.commit()
+    conn.commit()
 
 
 
