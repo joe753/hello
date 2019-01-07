@@ -1,5 +1,6 @@
 {
     "python.linting.pylintEnabled": false,
     "editor.detectIndentation": false,
-    "python.pythonPath": "C:\\Users\\60309\\AppData\\Local\\Programs\\Python\\Python37\\python.exe"
+    "python.pythonPath": "C:\\Users\\60309\\AppData\\Local\\Programs\\Python\\Python37\\python.exe",
+    "emmet.triggerExpansionOnTab": true
 }

@@ -1,40 +1,28 @@
-import mysql_migration as mm
+import mig_util2 as mm
 
 # Oracle connection
 connection = mm.get_oracle_conn()
 
-
-    
 with connection:
-cursor = connection.cursor()
-
-ora_select_emp = '''select employee_id, first_name, last_name, email, phone_number, hire_date, job_id, salary, commission_pct, manager_id, department_id
-                from Employees'''
-
-def ora_select(sql, rows):
-
-
-    # -----------------------Select Employees-------------------------
-
-    cursor.execute(sql)
-    rows = cursor.fetchall()
-    return rows
-
-ora_select(ora_select_emp, emp)
-
+  cursor = connection.cursor()
+# -----------------------Select Employees-------------------------
+  sql = '''select employee_id, first_name, last_name, email, phone_number, hire_date, job_id, salary, commission_pct, manager_id, department_id
+            from Employees'''
+  cursor.execute(sql)
+  rows = cursor.fetchall()
 # -----------------------Select Jobs------------------------------
-sql_job = '''select job_id, job_title, min_salary, max_salary from Jobs'''
-
-cursor.execute(sql_job)
-job = cursor.fetchall()
+  sql_job = '''select job_id, job_title, min_salary, max_salary from Jobs'''
+ 
+  cursor.execute(sql_job)
+  job = cursor.fetchall()
 # -----------------------Select Departments------------------------------
-sql_department = '''select department_id, department_name, manager_id from Departments'''
-cursor.execute(sql_department)
-department = cursor.fetchall()
+  sql_department = '''select department_id, department_name, manager_id from Departments'''
+  cursor.execute(sql_department)
+  department = cursor.fetchall()
 # -----------------------Select Job_history--------------------------------
-sql_job_history = '''select employee_id, start_date, end_date, job_id, department_id from Job_history'''
-cursor.execute(sql_job_history)
-job_history = cursor.fetchall()
+  sql_job_history = '''select employee_id, start_date, end_date, job_id, department_id from Job_history'''
+  cursor.execute(sql_job_history)
+  job_history = cursor.fetchall()
 
 
 # Mysql connection
@@ -79,10 +67,9 @@ with conn_dooodb:
     cur.execute("call sp_drop_fk_refs('Job_history')")
     cur.execute("drop table if exists Job_history")
     job_history_create = '''create table Job_history(
-                  id 
                   employee_id int unsigned not null ,
-                  start_date date not null ,
-                  end_date date not null,
+                  start_date datetime not null ,
+                  end_date datetime not null,
                   job_id varchar(10) not null,
                   department_id smallint(4),
                   primary key(employee_id, start_date)
@@ -103,10 +90,10 @@ with conn_dooodb:
                     last_name varchar(25) not null ,
                     email varchar(25) not null,
                     phone_number varchar(20),
-                    hire_date date not null,
+                    hire_date datetime not null,
                     job_id varchar(10) not null,
                     salary int unsigned,
-                    commission_pct decimal(3, 2),
+                    commission_pct decimal(4, 2),
                     manager_id int unsigned,
                     department_id smallint(4)
                     )'''
@@ -133,11 +120,18 @@ with conn_dooodb:
     department_fk1 = "alter table Department add constraint foreign key fk_dept_emp (manager_id) references Employee(id)"
 
     cur.execute(employee_fk1)
+    print ('OK ====== employee_fk1 ====== OK' )
     cur.execute(employee_fk2)
+    print ('OK ====== employee_fk2 ====== OK' )
     cur.execute(employee_fk3)
+    print ('OK ====== employee_fk3 ====== OK' )
     cur.execute(job_history_fk1)
+    print ('OK ====== job_history_fk1 ====== OK'  )
     cur.execute(job_history_fk2)
+    print ('OK ====== job_history_fk2 ====== OK' )
     cur.execute(job_history_fk3)
+    print ('OK ====== job_history_fk3 ====== OK'  )
     cur.execute(department_fk1)
+    print ('OK ====== department_fk1 ====== OK'  )
 
     conn_dooodb.commit()
