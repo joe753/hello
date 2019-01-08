@@ -18,4 +18,4 @@ for i in card_list:
         price = c.select('.display-price')[0].text
 
 print (c)
-        print(">>", c.get('class'), [title, comp, price])
+print(">>", c.get('class'), [title, comp, price])
