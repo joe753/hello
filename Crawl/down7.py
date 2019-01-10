@@ -7,6 +7,7 @@ def request_url(site, uri):
     soup = BeautifulSoup(res.text, 'html.parser')
     uri = uri
     url = soup.select(uri)[0]
+    print ("https://blog.naver.com" + url.get('src'))
     return (url)
    
 def down_img (site):
@@ -41,10 +42,10 @@ def crawling (site):
     down_img(crawl_site)
     
 
+request_url('https://blog.naver.com/korea_diary/221433346994', '#mainFrame')
 
 
-
-crawling ('https://blog.naver.com/korea_diary/221433346994')
+# crawling ('https://blog.naver.com/korea_diary/221433346994')
 
 # imgs = soup.select(sel)
 # print(imgs, len(imgs))
