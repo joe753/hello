@@ -11,3 +11,6 @@ def getHostname(url, withProtocol = False):
         return "{}://{}".format(p.scheme, p.hostname)
     else:
         return p.hostname
+
+def urljoin(url, p):
+    return parse.urljoin(url, p)
