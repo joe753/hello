@@ -1,109 +1,91 @@
 from bs4 import BeautifulSoup
-import requests 
-import urls
+import requests
+import function
+import time
+import random
 
-url = "http://www.jobkorea.co.kr/recruit/joblist?menucode=duty&dutyCtgr=10016#anchorGICnt_1"
-res = requests.get(url)
-soup = BeautifulSoup(res.text, 'html.parser')
+page_num = 0
+b = 0
 
-sel = "#dev-gi-list a"
-# sel2 = "#contentsui_table thead"    
+for h in range(0,160):
+    page_num = h + 1
 
-data = soup.select(sel)
-b = '/Recruit/GI_Read/'
-for i in data :
-    a = i.get('href')
-    # print (a)
-    if b not in a :
-        continue
-    print ("\n\n" , "http://www.jobkorea.co.kr" + a)
-# print (data)
-# a = data.get('href')
-# print (a)
-# img_src = requests.get(a)
-# print (img_src)
-# data2 = soup.select(sel2)[0].text
-# print ("============================data=========\n\n",data2, "\n\n\n", data)
-
-
-###--------------------------------------------------------------------------------------
-
-# for datum in data:
-#     datum_res = datum.select('td')
-#     a = datum_res[0].text
-#     b = datum_res[1].text
-#     c = datum_res[2].text
-#     print (a,b,c)
-    
-# def request_url(site, uri):
-#     res = requests.get(site)
-#     soup = BeautifulSoup(res.text, 'html.parser')
-#     uri = uri
-#     url = soup.select(uri)[0]
-#     return (url)
-   
-# def down_img (site):
-#     # 제목 CSV파일화
-#     res = requests.get(site)
-#     soup = BeautifulSoup(res.text, 'html.parser')
-#     sel_2 = "div.se-title-text"
-#     texts = soup.select(sel_2)[0].text
-#     save_name = "2.csv"
-#     with open(save_name, mode="w") as file:
-#         file.write(texts)
-#     #이미지 다운로드
-#     sel = "img.se-image-resource"
-#     imgs = soup.select(sel) 
-#     print (imgs, texts)
-#     if len(imgs) < 1:
-#         exit()
-#     for img in imgs:
-#         a = 1
-#         src = img.get('src')
-#         print("img>>", src)
-#         img_src = requests.get(src).content
-#         saveFile = "./images/"+ str(a) + ".png"
-#         with open(saveFile, mode="wb") as file:
-#             file.write(img_src)
-#         a = a + 1     
-
-
-# #--- 크롤
-# def crawling (site):
-#     crawl_site = "http://www.jobkorea.co.kr" + request_url(site, 'iframe#gib_frame').get('src')
-#     print (crawl_site)
-    
+    url = "http://www.jobkorea.co.kr/Recruit/Home/_GI_List/"
 
 
 
 
-# crawling ('http://www.jobkorea.co.kr/Recruit/GI_Read/27358112?rPageCode=PL')
+    params = {
+        'isDefault': 'true',
+        'duty': '1000100,1000101,1000102,1000096,1000097',
+        'menucode':'',
+        'page': str(page_num),
+        'pagesize': '50',
+        'direct': '0',
+        'order': '2',
+        'tabindex': '0',
+        'fulltime': '0',
+        'confirm': '0'
+    }
+    headers = {
+        'Host': 'www.jobkorea.co.kr',
+        'Origin' : 'http://www.jobkorea.co.kr',
+        'Referer': 'http://www.jobkorea.co.kr/recruit/joblist?menucode=duty',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36',
+        'X-Requested-With': 'XMLHttpRequest'
+    }
 
-# imgs = soup.select(sel)
-# print(imgs, len(imgs))
+    html = requests.post(url, params=params, headers = headers).text
 
-# if len(imgs) < 1:
-#     exit()
 
-# a = 1
 
-# for img in imgs:
-#     src = img.get('src')
-#     print("img>>", src)
-#     img_src = requests.get(src).content
-#     saveFile = "./images/"+ str(a) + ".png"
-#     # print ("--------------------------------", saveFile, img_src)
-#     with open(saveFile, mode="wb") as file:
-#         file.write(img_src)
-#     a = a + 1  
-#     # write to file
+    soup = BeautifulSoup(html, 'html.parser')
 
-# # a = 0
 
-# for i in src: 
-#     a += 1
-#     saveFile = "./images/"+ str(a) + ".png"
-#     with open(saveFile, mode="wb") as file:
-#         file.wirte(i)
+    sel_comptitle = "div.tplList div.titBx a"
+    sel_compname = "div.tplList td.tplCo "    
 
-# print("OK!")
+    get_url = soup.select(sel_comptitle)
+    get_name = soup.select(sel_compname)
+
+    # print(get_url)
+
+    company_name = []
+    url2 = []
+
+
+    for i in get_url :
+        a = i.get('href')
+        url2.append("http://www.jobkorea.co.kr" + a)
+        # print ("\n\n" , "http://www.jobkorea.co.kr" + a) 
+
+
+
+    for j in get_name :
+        c = j.select_one('a').text
+        company_name.append(c)
+        # b += 1
+        # print (c , b)
+
+
+    name_url = []
+    # print (len(url2))
+    for i in range(len(url2)):
+        name_url.append((company_name[i], url2[i]))
+
+
+    # 
+    data = soup.select("#dev-gi-list div.titBx a")
+    for i in data:
+        href = i.get('href')
+        # print(href)
+
+    for k in url2:
+        b = b + 1
+        function.request_url(k, '#gib_frame')
+        print (k,"=======================>",b, "\n\n")
+        time.sleep(random.randrange(2, 14))
+ 
+
+# href = data.get('href')
+# print (href)
