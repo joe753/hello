@@ -41,7 +41,6 @@ for h in range(0,160):
 
     soup = BeautifulSoup(html, 'html.parser')
 
-
     sel_comptitle = "div.tplList div.titBx a"
     sel_compname = "div.tplList td.tplCo "    
 
@@ -67,18 +66,20 @@ for h in range(0,160):
         # b += 1
         # print (c , b)
 
-
     name_url = []
     # print (len(url2))
     for i in range(len(url2)):
         name_url.append((company_name[i], url2[i]))
 
 
+
+
+
     # 
     data = soup.select("#dev-gi-list div.titBx a")
     for i in data:
         href = i.get('href')
-        # print(href)
+        print(href)
 
     for k in url2:
         b = b + 1
@@ -86,6 +87,7 @@ for h in range(0,160):
         print (k,"=======================>",b, "\n\n")
         time.sleep(random.randrange(2, 14))
  
+print (name_url)
 
 # href = data.get('href')
 # print (href)
