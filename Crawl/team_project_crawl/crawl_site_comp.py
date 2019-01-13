@@ -7,8 +7,8 @@ import random
 page_num = 0
 b = 0
 url2 = []
-savename = "123.csv"
-with open(savename, mode="w") as file:
+savename = "crawl_site.csv"
+with open(savename, mode="w", encoding="utf-8") as file:
     for h in range(0,160):
         page_num = h + 1
 
@@ -55,14 +55,18 @@ with open(savename, mode="w") as file:
         # print(get_url)
 
         company_name = []
-    
-
+        d = 0
+        for j in get_name :
+            c = j.select_one('a').text
+            company_name.append(c)
 
         for i in get_url :
             a = i.get('href')
             c = ("http://www.jobkorea.co.kr" + a )
             b = b+1
-            file.write("{},{},{}".format(b, c, "\n")) 
+            file.write("{},{},{},{}".format(b, c, company_name[d], "\n")) 
+            d = d+1
+
             # print (a)
 
 

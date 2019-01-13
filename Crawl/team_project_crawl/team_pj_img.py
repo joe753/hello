@@ -1,24 +1,21 @@
 from bs4 import BeautifulSoup
-import requests 
-import urls
+import requests
+import function
+import time
+import random
 
-url = "http://www.jobkorea.co.kr/Recruit/GI_Read_Comt_Ifrm?Gno=27357865&blnKeepInLink=0&rPageCode=PL"
+
+
+with open("1234.csv", "r", encoding='utf8') as file:
+for line in file:
 res = requests.get(url)
 soup = BeautifulSoup(res.text, 'html.parser')
 
-sel = "body.jkNewTemplateVer1 td.detailTable img"
-sel2 = "#contentsui_table thead"    
-
-data = soup.select_one(sel)
-print (data)
-a = data.get('src')
-img_src = requests.get(a).content
-# data2 = soup.select(sel2)[0].text
-# print ("============================data=========\n\n",data2, "\n\n\n", data)
-savename = "./images/123.jpg"
-with open(savename, mode="wb") as file:
-        file.write(img_src)
-
+for k in url2:
+            b = b + 1
+            function.request_url(k, '#gib_frame')
+            print (k,"=======================>",b, "\n\n")
+            time.sleep(random.randrange(2, 14))
 
 ###--------------------------------------------------------------------------------------
 
@@ -28,4 +25,3 @@ with open(savename, mode="wb") as file:
 #     b = datum_res[1].text
 #     c = datum_res[2].text
 #     print (a,b,c)
-    

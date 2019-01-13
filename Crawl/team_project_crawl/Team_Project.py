@@ -46,9 +46,7 @@ for h in range(0,160):
 
     get_url = soup.select(sel_comptitle)
     get_name = soup.select(sel_compname)
-
-    # print(get_url)
-
+    
     company_name = []
     url2 = []
 
@@ -63,31 +61,34 @@ for h in range(0,160):
     for j in get_name :
         c = j.select_one('a').text
         company_name.append(c)
+
+    print (company_name)
         # b += 1
         # print (c , b)
 
-    name_url = []
-    # print (len(url2))
-    for i in range(len(url2)):
-        name_url.append((company_name[i], url2[i]))
+#     name_url = []
+#     # print (len(url2))
+#     for i in range(len(url2)):
+#         name_url.append((company_name[i], url2[i]))
 
 
 
 
 
-    # 
-    data = soup.select("#dev-gi-list div.titBx a")
-    for i in data:
-        href = i.get('href')
-        print(href)
+#     # 
+#     data = soup.select("#dev-gi-list div.titBx a")
+#     for i in data:
+#         href = i.get('href')
+#         # print(href)
 
-    for k in url2:
-        b = b + 1
-        function.request_url(k, '#gib_frame')
-        print (k,"=======================>",b, "\n\n")
-        time.sleep(random.randrange(2, 14))
- 
-print (name_url)
+#     for k in url2:
+#         print (k)
+#         b = b + 1
+#         function.request_url(k, '#gib_frame')
+#         print (k,"=======================>",b, "\n\n")
+#         time.sleep(random.randrange(2, 14))
+
+# print (name_url)
 
 # href = data.get('href')
 # print (href)

@@ -13,8 +13,4 @@ def getHostname(url, withProtocol = False):
         return p.hostname
 
 def urljoin(url, p):
-<<<<<<< HEAD
     return parse.urljoin(url, p)
-=======
-    return parse.urljoin(url, p)
->>>>>>> 83ce84027e56df72f4809163d0e39cf8904faa07
