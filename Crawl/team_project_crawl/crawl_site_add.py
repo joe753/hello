@@ -10,7 +10,7 @@ page_num = 0
 b = 0
 url2 = []
 savename = "crawl_site2.csv"
-with open(savename, mode="w", encoding="utf-8") as file:
+with open(savename, mode="r", encoding="utf-8") as file:
     for h in range(0,160):
         page_num = h + 1
 
@@ -52,8 +52,8 @@ with open(savename, mode="w", encoding="utf-8") as file:
         get_name = soup.select(sel_compname)
 
         
-
-        file.write("{},{},{},{}".format("ID", "URL", "Company_name", "\n")) 
+    
+        # file.write("{},{},{},{}".format("ID", "URL", "Company_name", "\n")) 
         # print(get_url)
 
         company_name = []
@@ -61,19 +61,13 @@ with open(savename, mode="w", encoding="utf-8") as file:
         for j in get_name :
             c = j.select_one('a').text
             company_name.append(c)
-
+        
         for i in get_url :
             a = i.get('href')
             c = ("http://www.jobkorea.co.kr" + a )
             b = b+1
-            file.write("{},{},{},{}".format(b, c, company_name[d], "\n")) 
             d = d+1
-
-            # print (a)
-
-
-
-    
-            # print ("\n\n" , "http://www.jobkorea.co.kr" + a) 
-
-
+            for line in file:
+                if line.split(",")[1] != c :
+                    with open(savename, mode="a", encoding="utf-8") as file2:
+                        file2.write("{},{},{},{},{}".format(b, c, company_name[d], now.strftime('%Y-%m-%d %H:%M:%S'), "\n")) 
