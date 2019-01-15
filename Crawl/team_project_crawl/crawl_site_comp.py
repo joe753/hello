@@ -9,8 +9,8 @@ now = datetime.datetime.now()
 page_num = 0
 b = 0
 url2 = []
-savename = "crawl_site2.csv"
-with open(savename, mode="w", encoding="utf-8") as file:
+savename = "crawl_site.csv"
+with open(savename, mode="w", encoding="utf-8") as file:   
     for h in range(0,160):
         page_num = h + 1
 
@@ -53,7 +53,7 @@ with open(savename, mode="w", encoding="utf-8") as file:
 
         
 
-        file.write("{},{},{},{}".format("ID", "URL", "Company_name", "\n")) 
+        
         # print(get_url)
 
         company_name = []
