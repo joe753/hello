@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
-import function
+import make_url
 import time
 import random
 import datetime
@@ -15,9 +15,6 @@ with open(savename, mode="w", encoding="utf-8") as file:
         page_num = h + 1
 
         url = "http://www.jobkorea.co.kr/Recruit/Home/_GI_List/"
-
-
-
 
         params = {
             'isDefault': 'true',
@@ -41,8 +38,6 @@ with open(savename, mode="w", encoding="utf-8") as file:
 
         html = requests.post(url, params=params, headers = headers).text
 
-
-
         soup = BeautifulSoup(html, 'html.parser')
 
         sel_comptitle = "div.tplList div.titBx a"
@@ -50,12 +45,7 @@ with open(savename, mode="w", encoding="utf-8") as file:
 
         get_url = soup.select(sel_comptitle)
         get_name = soup.select(sel_compname)
-
         
-
-        
-        # print(get_url)
-
         company_name = []
         d = 0
         for j in get_name :
@@ -68,12 +58,5 @@ with open(savename, mode="w", encoding="utf-8") as file:
             b = b+1
             file.write("{},{},{},{}".format(b, c, company_name[d], "\n")) 
             d = d+1
-
-            # print (a)
-
-
-
-    
-            # print ("\n\n" , "http://www.jobkorea.co.kr" + a) 
 
 
