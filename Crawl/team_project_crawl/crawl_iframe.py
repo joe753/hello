@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
-import function
+import make_url
 import time
 import random
 import datetime
@@ -12,7 +12,7 @@ with open ("crawl_site.csv", "r", encoding='utf8') as file:
 		file2.write("{},{},{},{},{},{}".format("ID","Company_name", "URL", "iFrame_URL", "Time", "\n"))
 		for line in file:
 			now = datetime.datetime.now()  
-			result = function.request_url(line.split(",")[1], '#gib_frame')
+			result = make_url.request_url(line.split(",")[1], '#gib_frame')
 			if result == "none":
 				none_count += 1
 				print ("ERROR!!!!", none_count)
@@ -27,4 +27,4 @@ with open ("crawl_site.csv", "r", encoding='utf8') as file:
 				none_count = 0
 
 
-	###-----------------------------------------------
+	

@@ -1,23 +1,27 @@
 from bs4 import BeautifulSoup
 import requests
-import function
+import make_url
 import time
 import random
 import datetime
 
 now = datetime.datetime.now()
 page_num = 0
-b = 0
 url2 = []
 savename = "crawl_site2.csv"
+
+url_lst = []
+with open(savename, mode = 'r', encoding = 'utf-8') as crawl_site:
+    for line in crawl_site:
+        url_lst.append(line.split(',')[1])
+
+b = len(url_lst) + 1
+
 with open(savename, mode="r", encoding="utf-8") as file:
-    for h in range(0,160):
+    for h in range(0,20):
         page_num = h + 1
 
         url = "http://www.jobkorea.co.kr/Recruit/Home/_GI_List/"
-
-
-
 
         params = {
             'isDefault': 'true',
@@ -51,23 +55,23 @@ with open(savename, mode="r", encoding="utf-8") as file:
         get_url = soup.select(sel_comptitle)
         get_name = soup.select(sel_compname)
 
-        
-    
         # file.write("{},{},{},{}".format("ID", "URL", "Company_name", "\n")) 
         # print(get_url)
 
         company_name = []
         d = 0
+    
         for j in get_name :
-            c = j.select_one('a').text
-            company_name.append(c)
+            comp = j.select_one('a').text
+            company_name.append(comp)
+        
         
         for i in get_url :
             a = i.get('href')
             c = ("http://www.jobkorea.co.kr" + a )
-            b = b+1
-            d = d+1
-            for line in file:
-                if line.split(",")[1] != c :
-                    with open(savename, mode="a", encoding="utf-8") as file2:
-                        file2.write("{},{},{},{},{}".format(b, c, company_name[d], now.strftime('%Y-%m-%d %H:%M:%S'), "\n")) 
+            
+            if c not in url_lst:
+                with open(savename, mode="a", encoding="utf-8") as file2:
+                    file2.write("{},{},{},{},{}".format(b, c, company_name[d], now.strftime('%Y-%m-%d %H:%M:%S'), "\n"))
+                    b = b + 1
+                    d = d + 1

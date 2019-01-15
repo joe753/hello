@@ -78,23 +78,7 @@ for j in jsonData['contsLike']:
         b = b+1
     else :
         continue
-            
-    # b = b + 1
+
+
     
-# print (like_id)
-# print (get_song)
-
-# print (get_url)
-
-
-
    
-
-
-
-
-# for i in get_url :
-#     a = i.get('')
-#     print (a)
-
-

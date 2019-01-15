@@ -6,10 +6,11 @@ from selenium.webdriver.common.keys import Keys
 drvPath = 'C:\Workspace\python\chromedriver.exe'
 driver = webdriver.Chrome(drvPath)
 UserId = "joe753"
-UserPw = "gusdnr12#"
+UserPw = ""
+data['id']
 
 driver.get("https://www.naver.com")
-time.sleep(1)
+time.sleep(3)
 
 driver.find_element_by_class_name('lg_local_btn').click()
 print("click big button!!")
@@ -30,5 +31,5 @@ id.send_keys(Keys.CONTROL, "v")
 
 
 pw.send_keys(Keys.RETURN)
-time.sleep(10)                # cf.  driver.implicitly_wait(5)
+time.sleep(5)                # cf.  driver.implicitly_wait(5)
 driver.quit() # driver.close()
