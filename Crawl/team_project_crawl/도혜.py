@@ -6,7 +6,7 @@ number = []
 e = 0
 with open ("crawl_iframe.csv", "r", encoding='utf-8') as file_0:
     for line in file_0:
-        if line.split(",")[3] == "iFrame_URL" and :
+        if line.split(",")[3] == "iFrame_URL" :
             continue
         else:
             e = e+1    
