@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
-import function
+import make_url
 import time
 import random
 import datetime
