@@ -28,6 +28,8 @@ with open ("crawl_site.csv", "r", encoding='utf-8') as file:
             else :  
                 now = datetime.datetime.now()  
                 result = make_url.request_url(line.split(",")[1], '#gib_frame')
+
+                
                 if result == "none":
                     none_count += 1
                     time.sleep(4)

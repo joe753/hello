@@ -56,7 +56,7 @@ with open ("crawl_iframe.csv", "r", encoding='utf-8') as file_0:
                           
                             print ("============>>>>",line.split(",")[0],"<<<<<========== NO.csv =================================", b , "b","\n", "================================ NO.csv ===========>>>>",line.split(",")[0],"<<<<<====================== \n",)
                             
-                            time.sleep((random.randrange(4, 12)))
+                            time.sleep((random.randrange(5, 8)))
                         
                     # img src 
                     else :
@@ -69,7 +69,7 @@ with open ("crawl_iframe.csv", "r", encoding='utf-8') as file_0:
                                 cnt_file.write("{},{},{},{}".format(line.split(",")[0], line.split(",")[1], now.strftime('%Y-%m-%d %H:%M:%S'),"\n"))
                                 print ("=========>>>>", line.split(",")[0],"<<<<<============= IMG.csv =================================", c,"c", "\n", "================================ IMG.csv ========>>>>",line.split(",")[0],"<<<<<============ \n")
                                 
-                                time.sleep((random.randrange(4, 12)))
+                                time.sleep((random.randrange(5,8)))
                             continue
                         else :  
                             print ("ERRORRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR")
@@ -89,7 +89,7 @@ with open ("crawl_iframe.csv", "r", encoding='utf-8') as file_0:
                     
                 print ("===========>>>>",line.split(",")[0],"<<<<<========== YES.csv ==============================" , heads , data , "\n", "=========================== YES.csv ========>>>>",line.split(",")[0],"<<<<<============== \n" )
                 
-                time.sleep((random.randrange(4, 12)))
+                time.sleep((random.randrange(5,8)))
 
             # head = []
             # datum = []
