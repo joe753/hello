@@ -20,25 +20,38 @@ with open ("yes.csv", "r", encoding='utf-8') as file_0:
             soup = BeautifulSoup(html, 'html.parser')
             a = soup.select('div.artTplInner table')
             k = a[0]
-         
+            kl = []
+            vl = []
+
             heads = k.select('thead tr th')
-            data = k.select('tbody tr')
+            data = k.select('tbody tr td')
+
 
             #### Head #####
-            for i in heads:
-                b.append(i.text)
+            for key in heads:
+                kl.append(key.text)
+                vl.append([])
+            
 
-
-            #### to make Body ####
-            for body in data:
-                row = body.select('td')
-                for j in row:
-                    print (j.text)
-                    time.sleep(3)
-                    c.append(j.text)
-                
-                print (c)
+            for i,value in enumerate(data):
+                vl[i].append(value.text)
+                print (i+1, value.text)
                 time.sleep(5)
+
+            print (kl, vl)
+            time.sleep(5)
+
+
+            # #### to make Body ####
+            # for body in data:
+            #     row = body.select('td')
+            #     for j in row:
+            #         print (j.text)
+            #         time.sleep(3)
+            #         c.append(j.text)
+                
+            #     print (c)
+            #     time.sleep(5)
             
             
 

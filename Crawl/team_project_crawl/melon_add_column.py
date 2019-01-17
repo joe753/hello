@@ -90,7 +90,7 @@ for cells in reader:
 likecnt.sort()
 for i in all_data:
     i.append(int(i[3]) - likecnt[0])
-    add_column.append(i),
+    add_column.append(i)
 
 like_sum = 0
 like_gap_sum = 0
