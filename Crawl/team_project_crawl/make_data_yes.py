@@ -11,6 +11,8 @@ with open ("yes.csv", "r", encoding='utf-8') as file_0:
     b = []
     c = []
     for line in file_0:
+        thead = {}
+        
         if line.split(",")[2] == "iframe_URL" :
             continue
         else:
@@ -22,24 +24,40 @@ with open ("yes.csv", "r", encoding='utf-8') as file_0:
             k = a[0]
             kl = []
             vl = []
-
+            company = {}
             heads = k.select('thead tr th')
             data = k.select('tbody tr td')
-
-
             #### Head #####
             for key in heads:
                 kl.append(key.text)
                 vl.append([])
             
+            
+            # len_kl = 0
+            # for i, value in enumerate(data):
+            #     # vl[i].append(value)
+            #     print (i, "\n", value)
+            #     time.sleep(5)
+            len_kl = 0
+            for i in data : 
+                if len_kl == len(kl):
+                    len_kl = 0
+                    vl[len_kl].append(i.text)
+                    len_kl += 1
+                else:    
+                    vl[len_kl].append(i.text)
+                    len_kl += 1
+                    
+            
+            for i in range(len(kl)):
+                thead[kl[i]] = vl[i]
+                
+            company[line.split(",")[1]] = thead
+            print ("\n\n\n",company)
+            time.sleep(3)
+        
 
-            for i,value in enumerate(data):
-                vl[i].append(value.text)
-                print (i+1, value.text)
-                time.sleep(5)
 
-            print (kl, vl)
-            time.sleep(5)
 
 
             # #### to make Body ####

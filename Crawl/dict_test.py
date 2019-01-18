@@ -53,10 +53,11 @@ for i , tr in enumerate(soup.select('tr')):
         lst = []
         for td in tr.select('td'):
             lst.append(td.text)
-
+      
         data[item_name] = lst
 
-print (data)
+print (companies,data)
+time.sleep(5)
 
 
 while True:
