@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
+import time
 
 
 def request_url(site, uri):
@@ -28,8 +29,9 @@ def down_img (site):
         a = 1
         src = img.get('src')
         print("img>>", src)
+        time.sleep(5)
         img_src = requests.get(src).content
-        saveFile = "./images/"+ str(a) + ".png"
+        saveFile = str(a) + ".png"
         # print ("--------------------------------", saveFile, img_src)
         with open(saveFile, mode="wb") as file:
             file.write(img_src)
