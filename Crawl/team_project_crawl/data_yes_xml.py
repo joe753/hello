@@ -20,38 +20,18 @@ with open ("yes.csv", "r", encoding='utf-8') as file_0:
             url = line.split(",")[2]
             html = requests.get(url).text
             soup = BeautifulSoup(html, 'html.parser')
-            a = soup.select('div.artTplInner table')
-            k = a[0]
-            kls = []
-            vl = []
-            company = {}
-            dic = {}
-            heads = k.select('thead tr th')
-            data = k.select('tbody tr td')
-            #### Head #####
-            for key in heads:
-                kls.append(key.text)
-                vl.append([])
-            
-            num = 0
-            for value in data:
-                if num == len(kls) :
-                    num = 0
-                    vl[num].append(value.text)
-                    num += 1
-                else : 
-                    vl[num].append(value.text)
-                    num += 1
+            a = soup.select_one('div.artTplInner table')
 
-            for i, kl  in enumerate(kls):
-                dic[kl] = vl[i]
-                company[line.split(",")[1]] = dic
+            if os.path.exists("./yes_folder/"+ line.split(",")[1] + ".xml") == False:
+                with open ("./yes_folder/"+ line.split(",")[1] + ".xml", "w", encoding="utf-8" ) as file:
+                    file.write("{}".format(a))   
+                    print (line.split(",")[1] + ".xml  " + "  has been downloaded.")
+                    time.sleep(5)    
+            else : 
+               
+                continue
+            time.sleep(5)
 
-            for i in company:
-                print (i, "\n\n\n")
-                time.sleep(3)
-
-         
 
             # #### to make Body ####
             # for body in data:

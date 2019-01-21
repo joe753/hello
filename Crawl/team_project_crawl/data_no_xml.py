@@ -5,7 +5,7 @@ import time
 import datetime
 import os
 import random
-with open ("yes.csv", "r", encoding='utf-8') as file_0:
+with open ("no.csv", "r", encoding='utf-8') as file_0:
 
 
     b = []
@@ -16,42 +16,21 @@ with open ("yes.csv", "r", encoding='utf-8') as file_0:
         if line.split(",")[2] == "iframe_URL" :
             continue
         else:
-            now = datetime.datetime.now()
-            url = line.split(",")[2]
-            html = requests.get(url).text
-            soup = BeautifulSoup(html, 'html.parser')
-            a = soup.select('div.artTplInner table')
-            k = a[0]
-            kls = []
-            vl = []
-            company = {}
-            dic = {}
-            heads = k.select('thead tr th')
-            data = k.select('tbody tr td')
-            #### Head #####
-            for key in heads:
-                kls.append(key.text)
-                vl.append([])
+            if os.path.exists("./no_folder/"+ line.split(",")[1] + ".xml") == False:
+                now = datetime.datetime.now()
+                url = line.split(",")[2]
+                html = requests.get(url).text
+                soup = BeautifulSoup(html, 'html.parser')
+                a = soup.select_one('td.detailTable table')
+                with open ("./no_folder/"+ line.split(",")[0]+ "_" + line.split(",")[1] + ".xml", "w", encoding="utf-8" ) as file:
+                    file.write("{}".format(a))   
+                    print (line.split(",")[1] + ".xml  " + "  has been downloaded. \n")
+                    time.sleep((random.randrange(5, 8)))    
+            else : 
+                print  ("\t\t"+ line.split(",")[1] + ".xml  " + "  has already existed. \n")
+                continue
             
-            num = 0
-            for value in data:
-                if num == len(kls) :
-                    num = 0
-                    vl[num].append(value.text)
-                    num += 1
-                else : 
-                    vl[num].append(value.text)
-                    num += 1
 
-            for i, kl  in enumerate(kls):
-                dic[kl] = vl[i]
-                company[line.split(",")[1]] = dic
-
-            for i in company:
-                print (i, "\n\n\n")
-                time.sleep(3)
-
-         
 
             # #### to make Body ####
             # for body in data:

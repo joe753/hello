@@ -33,7 +33,7 @@ get_song = soup.select(sel_song)
 for i in get_song:
     song_number = i.attrs["data-song-no"]
     song_no.append(song_number)
-    rank.append(i.select_one('div span.rank').text + "위")
+    rank.append(i.select_one('div span.rank').text)
     song_name.append((i.select_one('div.rank01 span a').text))
     singer.append(i.select_one('div.rank02 span').text)
 

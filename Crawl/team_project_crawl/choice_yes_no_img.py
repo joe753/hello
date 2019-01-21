@@ -53,6 +53,7 @@ with open ("crawl_iframe.csv", "r", encoding='utf-8') as file_0:
                         with open("no.csv", "a", encoding = 'utf-8') as no_append_file:
                             no_append_file.write("{},{},{},{},{}".format(line.split(",")[0], line.split(",")[1], line.split(",")[3], now.strftime('%Y-%m-%d %H:%M:%S'),"\n")) 
                             cnt_file.write("{},{},{},{}".format(line.split(",")[0], line.split(",")[1], now.strftime('%Y-%m-%d %H:%M:%S'),"\n"))
+                        with open()
                           
                             print ("============>>>>",line.split(",")[0],"<<<<<========== NO.csv =================================", b , "b","\n", "================================ NO.csv ===========>>>>",line.split(",")[0],"<<<<<====================== \n",)
                             
