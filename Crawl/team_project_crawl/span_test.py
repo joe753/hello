@@ -26,10 +26,12 @@ for i in trs:
         try : 
             len(j.attrs["rowspan"]) != 0
             row_span = j.attrs["rowspan"]
-            print ("TRRYYY \n",j)
+            span
+            print ("TRRYYY \n",j.text)
     
             time.sleep(3)
         except KeyError:
-            print ("EXCEPT \n",row_span)
+            int(row_span)
+            print ("EXCEPT \n",j.text)
             time.sleep(3)
 
