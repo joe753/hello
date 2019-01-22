@@ -44,14 +44,6 @@ def save(lst):
 
 
 
-lst = []
-for row in reader:
-    lst.append((row[0],row[1],row[2],row[3]))
-
-del lst[0]
-del lst[len(lst) - 1]
-
-
 save(lst)
 
 
