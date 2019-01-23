@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import time
+import re
 # crawling 함수
 
 def request(url, param_header, argv={}):
@@ -9,7 +10,7 @@ def request(url, param_header, argv={}):
     soup = BeautifulSoup(html, 'html.parser')
     return soup
 
-def crawl_data():
+def song_data():
     header = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36'}
     url = "https://www.melon.com/chart/index.htm"
     
@@ -17,11 +18,11 @@ def crawl_data():
    
     get_song = request(url, header).select(sel_song)
    
-    album_name = []
+    album_names = []
+    album_ids = []
     song_no = []
     song_name = []
     singer = []
-    
     genre = []
     lst = []
     
@@ -32,7 +33,13 @@ def crawl_data():
         song_no.append(song_number)
         song_name.append((i.select_one('div.rank01 span a').text))
         singer.append(i.select_one('div.rank02 span').text)
-        album_name.append(i.select_one('div.ellipsis.rank03 a').text)
+        album_name = i.select_one('div.ellipsis.rank03 a').text
+        album_names.append(album_name)
+        album_id_strings = i.select_one('div.ellipsis.rank03 a').attrs['href']
+        pattern = re.compile("\'(.*)\'")
+        album_id = re.findall(pattern, album_id_strings)[0]
+        album_ids.append(album_id)
+        # print(album_id)
         
 
     for num, song_num in enumerate(song_no):
@@ -47,10 +54,16 @@ def crawl_data():
         
         for i in get_data:
             genre.append(i.select_one('dl.list dd:nth-of-type(3)').text)
-            lst.append([song_no[num],song_name[num],singer[num],genre[num],album_name[num]])
-            
-    return (lst)
+            lst.append([song_no[num],song_name[num],singer[num],genre[num],album_ids[num]])
+            print('Song ----- 1 record  --> done!')
+        time.sleep(3)
+    # print(album_id)
+    print ("Finished Crawling Songs!!!!!")        
+    print (lst)
+    return lst
 
+
+song_data()
 ## MySql 함수
 
 import pymysql
@@ -68,15 +81,16 @@ def get_conn(db):
        db=db,
        charset='utf8')
 
-sql_truncate = "truncate table Meltop"
-sql_insert = "insert into MS_Song(song_no, title, singer, genre, album) values (%s, %s, %s, %s, %s)"
-isStart = True
+# sql_truncate = "truncate table Meltop"
 
-def save(lst):
+
+
+def save(lst, sql_insert):
     try:
         conn = get_conn('melondb')
         conn.autocommit = False
         cur = conn.cursor()
+       
         cur.executemany(sql_insert, lst)
         print("Affected RowCount is", cur.rowcount, "/", len(lst))
         conn.commit()
