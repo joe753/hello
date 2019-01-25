@@ -1,7 +1,4 @@
-from bs4 import BeautifulSoup
 import requests
-import time
-import random
 import json
 import melon_function as mf
 import tbl_album as album
@@ -20,12 +17,11 @@ def song_rank():
 
     b = 0
     url = "http://vlg.berryservice.net:8099/melon/list"
-    html = requests.get(url).text
-    soup = BeautifulSoup(html, 'html.parser')
+    top_list = mf.request(url)
     sel = "#frm table tbody tr "
 
     # song id, rank 가져오기
-    get_song = soup.select(sel)
+    get_song = top_list.select(sel)
     for i in get_song:
         song_number = i.attrs["data-song-no"]
         song_no.append(song_number)
@@ -48,9 +44,6 @@ def song_rank():
         lst.append([song_no[i], rank[i], date, likecnt[i]])
         print("Rank_lst ----->", (i + 1) , "record  --> done!")
     
-    print ("Album_data has been downloaded!!!!")
+    print ("Ranking has been downloaded!!!!")
         
-
     return (lst)
-
-

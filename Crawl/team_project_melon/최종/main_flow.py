@@ -17,10 +17,11 @@ import tbl_ms_song as ms
 # url = "http://vlg.berryservice.net:8099/melon/list"
 # trs = mf.request(url).select('tbody tr[data-song-no]')
 
-# # Album
+# Album
 album_lst = album.album_data()
 album_insert = "insert ignore into Album (album_id, album_title, album_genre, rating, releasedt, album_comp, entertainment) values (%s, %s, %s, %s, %s, %s, %s) "
 mf.save(album_lst, album_insert)
+
 
 # MS_Song(Master Table)
 songs = ms.song_data()
@@ -37,7 +38,7 @@ singer_id_lst = s.singer()
 singer_insert = "insert ignore into Singer(artist_id, name) values(%s, %s)"
 mf.save(singer_id_lst, singer_insert)
 
-# SongSinger(Mapping Table)
+#SongSinger(Mapping Table)
 songsinger_data = ss.songsinger()
 songsinger_insert = "insert ignore into SongSinger(song, singer) values(%s, %s)"
 mf.save(songsinger_data, songsinger_insert)

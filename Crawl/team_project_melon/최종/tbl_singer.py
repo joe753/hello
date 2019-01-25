@@ -1,8 +1,3 @@
-from bs4 import BeautifulSoup
-import requests
-import time
-import random
-import json
 import melon_function as mf
 import re
 
@@ -19,7 +14,8 @@ def singer():
             singer_ids = singer_link.attrs['href']
             pattern = re.compile("\'(.*)\'")
             singer_id = re.findall(pattern, singer_ids)[0] 
-            singer_info.append([singer_id, singer_name])       
+            singer_info.append([singer_id, singer_name])
     return singer_info
 
+singer()
 

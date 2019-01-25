@@ -1,6 +1,4 @@
 
-import requests
-from bs4 import BeautifulSoup
 import re
 import melon_function as mf
 
@@ -47,7 +45,6 @@ def song_data():
             genre.append(i.select_one('dl.list dd:nth-of-type(3)').text)
             lst.append([song_no[num],song_name[num],genre[num],album_ids[num]])
             print('Song ----->', (num+1), 'record  --> done!')
-    # print(album_id)
     print ("Finished Crawling Songs!!!!!")        
     
     return lst
