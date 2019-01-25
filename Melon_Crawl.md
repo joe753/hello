@@ -2,8 +2,6 @@
   
    #### [MainFlow](https://github.com/joe753/hello/blob/master/main_flow.py) <br>
    
-   #### [Melon_function](https://github.com/joe753/hello/blob/master/melon_function.py) <br>
-   
    #### [tbl_album](https://github.com/joe753/hello/blob/master/tbl_album.py) <br>
 
    #### [tbl_ms_song](https://github.com/joe753/hello/blob/master/tbl_ms_song.py) <br>
@@ -14,4 +12,5 @@
    
    #### [tbl_songsinger](https://github.com/joe753/hello/blob/master/tbl_songsinger.py)
    
+   #### [Melon_function](https://github.com/joe753/hello/blob/master/melon_function.py) <br>
 
