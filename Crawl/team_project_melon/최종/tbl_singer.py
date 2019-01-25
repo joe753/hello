@@ -17,5 +17,3 @@ def singer():
             singer_info.append([singer_id, singer_name])
     return singer_info
 
-singer()
-
