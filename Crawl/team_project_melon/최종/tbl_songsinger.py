@@ -8,7 +8,7 @@ def songsinger():
    
     lst = []
 
-    for num , i in enumerate(get_song):
+    for i in get_song:
         song_number = i.attrs["data-song-no"]
         singer = i.select_one('div.rank02 span').text
         lst.append([song_number, singer])
