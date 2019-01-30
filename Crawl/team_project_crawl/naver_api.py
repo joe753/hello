@@ -5,6 +5,7 @@ import time
 import re
 import pymysql
 import test_func as tf
+from pymongo import MongoClient, DESCENDING
 
 
 url = "https://openapi.naver.com/v1/search/blog.json"
@@ -59,8 +60,6 @@ blogpost_insert = "insert into BlogPost (blog_title, blog_link, blogger_id,postd
 tf.save (tbl_blogger, blogger_insert)
 tf.save (tbl_blogpost, blogpost_insert)
 #     # print(item['title'].replace('</b>','').replace('<b>',''), item['bloggerlink'], item['bloggername'], item['postdate'])
-
-
 
 
 
