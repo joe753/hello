@@ -2,9 +2,9 @@ from apiclient.discovery import build
 from pprint import pprint
 import time
 from pymongo import MongoClient, DESCENDING
+
+
 API_KEY = "AIzaSyCrr-otDVQyJ4TTu34UOpm6jO4x4_RHL6s"
-
-
 
 def main():
     mongo_client = MongoClient('localhost', 27017)
